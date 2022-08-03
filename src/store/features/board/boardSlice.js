@@ -6,8 +6,8 @@ const fetchBoardListById = createAsyncThunk('/board/getLists', (boardId) => {
 	);
 });
 
-export const boardSlice = createSlice({
-	name: 'boards',
+export const listSlice = createSlice({
+	name: 'lists',
 	initialState: {},
 
 	reducers: {
@@ -60,7 +60,8 @@ export const boardSlice = createSlice({
 		// Add reducers for additional action types here, and handle loading state as needed
 		builder.addCase(fetchBoardListById.fulfilled, (state, action) => {
 			// Add user to the state array
-			state.entities.push(action.payload);
+			const data = action.payload;
+			//state = {...state, state[data.id]: };
 		});
 	},
 });

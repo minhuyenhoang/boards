@@ -99,12 +99,12 @@ export const listApi = createApi({
 			}),
 		}),
 
-		addBoardToList: builder.mutation({
-			query: ({ id, board }) => ({
+		addCardToList: builder.mutation({
+			query: ({ id, card }) => ({
 				document: gql`
-					mutation addBoardToList($id: ID!, $board: BoardInput!) {
-						addBoardToList(id: $id, board: $board) {
-							boardId
+					mutation addBoardToList($id: ID!, $card: CardInput!) {
+						addCardToList(id: $id, card: $card) {
+							cardId
 							name
 							link
 						}
@@ -112,17 +112,17 @@ export const listApi = createApi({
 				`,
 				variables: {
 					id,
-					board,
+					card,
 				},
 			}),
 		}),
 
-		removeBoardFromList: builder.mutation({
-			query: ({ id, boardId }) => ({
+		removeCardFromList: builder.mutation({
+			query: ({ id, cardId }) => ({
 				document: gql`
-					mutation removeBoardFromList($id: ID!, $boardId: String!) {
-						removeBoardFromList(id: $id, boardId: $boardId) {
-							boardId
+					mutation removeBoardFromList($id: ID!, $cardId: String!) {
+						removeBoardFromList(id: $id, cardId: $cardId) {
+							cardId
 							name
 							link
 						}
@@ -130,26 +130,26 @@ export const listApi = createApi({
 				`,
 				variables: {
 					id,
-					boardId,
+					cardId,
 				},
 			}),
 		}),
 
-		moveBoardToList: builder.mutation({
-			query: ({ oldId, newId, boardId }) => ({
+		moveCardToList: builder.mutation({
+			query: ({ oldId, newId, cardId }) => ({
 				document: gql`
 					mutation moveBoardToList(
 						$oldId: ID!
 						$newId: ID!
-						$boardId: String!
+						$cardId: String!
 					) {
-						moveBoardToList(oldId: $oldId, newId: $newId, boardId: $boardId) {
+						moveBoardToList(oldId: $oldId, newId: $newId, cardId: $cardId) {
 							_id
 							username
 							fullname
 							title
-							boards {
-								boardId
+							cards {
+								cardId
 								name
 								link
 							}
@@ -159,7 +159,7 @@ export const listApi = createApi({
 				variables: {
 					oldId,
 					newId,
-					boardId,
+					cardId,
 				},
 			}),
 		}),
